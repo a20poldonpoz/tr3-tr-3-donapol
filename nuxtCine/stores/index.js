@@ -1,7 +1,5 @@
 // ~/store/index.js
-import {
-    defineStore
-  } from 'pinia';
+import {defineStore } from 'pinia';
 
 export const useStore = defineStore({
   id: 'main',
