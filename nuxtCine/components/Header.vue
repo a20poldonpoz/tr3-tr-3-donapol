@@ -70,8 +70,11 @@ export default {
 
 .cartelera-link{
   font-size: 1.2rem;
+  margin-right: 10px; /* Agregado para separar el botón Cartelera */
 }
+
 .login-link {
   font-size: 1.2rem;
+  margin-left: 10px; /* Agregado para separar el botón Iniciar Sesión */
 }
 </style>
