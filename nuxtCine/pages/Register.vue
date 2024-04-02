@@ -1,7 +1,7 @@
 <template>
   <body>
 
-  <div>
+  <div class="formContainer">
     <Header />
 
     <div class="container">
@@ -65,6 +65,10 @@ body{
   margin: 0;
   padding: 0;
   height: 100%;
+}
+
+.formContainer{
+  height: 75vh;
 }
 .container {
   max-width: 400px;

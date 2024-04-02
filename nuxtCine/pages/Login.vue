@@ -1,8 +1,8 @@
 <template>
   <body>
-
-  <div>
     <Header />
+  <div class="formContainer">
+    
 
     <div class="container">
       <form @submit.prevent="fetchLogin">
@@ -67,6 +67,11 @@ body{
   padding: 0;
   height: 100%;
 }
+
+.formContainer{
+  height: 58vh;
+}
+
 .container {
   max-width: 400px;
   margin: 50px auto; 
