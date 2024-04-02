@@ -5,14 +5,14 @@
         <div class="footer-column">
           <h3>Enlaces</h3>
           <ul>
-            <li><a href="#">Inici</a></li>
-            <li><a href="#">Cartelera</a></li>
-            <li><router-link to="/nosotros">Sobre nosotros</router-link></li>
-            <li><a href="#">Contacto</a></li>
+            <li><router-link to="/">Inici</router-link></li>
+            <li><router-link to="/cartelera">Cartelera</router-link></li>
+            <li><router-link to="/nosotros">Sobre nosaltres</router-link></li>
+            <li><router-link to="/Register">Registra't</router-link></li>
           </ul>
         </div>
         <div class="footer-column">
-          <h3>Redes Sociales</h3>
+          <h3>Xarxes Socials</h3>
           <ul>
             <li><a href="#">Facebook</a></li>
             <li><a href="#">Twitter</a></li>
@@ -20,10 +20,10 @@
           </ul>
         </div>
         <div class="footer-column">
-          <h3>Contacto</h3>
-          <p>Dirección: Av. Ejemplo 123, Ciudad Ejemplo</p>
-          <p>Teléfono: 123-456-789</p>
-          <p>Email: info@cineejemplo.com</p>
+          <h3>Contacte</h3>
+          <p>Direcció: Av.Olesa de Bonesvalls 27, Vallirana</p>
+          <p>Teléfono: 644887418</p>
+          <p>Email: info@cineliaco.com</p>
         </div>
       </div>
     </div>
@@ -34,7 +34,7 @@
 .footer {
   background-color: #222;
   color: #fff;
-  padding: 50px 0;
+  padding: 30px 0;
 }
 
 .container {
@@ -53,7 +53,6 @@
 
 .footer-column h3 {
   font-size: 18px;
-  margin-bottom: 10px;
 }
 
 .footer-column ul {
@@ -61,9 +60,7 @@
   padding: 0;
 }
 
-.footer-column ul li {
-  margin-bottom: 5px;
-}
+
 
 .footer-column ul li a {
   color: #fff;
