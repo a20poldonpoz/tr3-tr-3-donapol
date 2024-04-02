@@ -1,4 +1,6 @@
 <template>
+  <body>
+
   <div>
     <Header />
     <h1 class="title">TOP PEL·LÍCULES</h1>
@@ -19,6 +21,7 @@
     </div>
     <Footer />
   </div>
+</body>
 </template>
 
 <script>
@@ -78,7 +81,11 @@ export default {
 </script>
 
 <style scoped>
-
+body{
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
 .title {
   text-align: center;
 }

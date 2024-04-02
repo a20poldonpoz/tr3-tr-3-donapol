@@ -1,4 +1,6 @@
 <template>
+  <body>
+
   <div>
     <Header />
 
@@ -18,6 +20,8 @@
       </form>
     </div>
   </div>
+  <Footer />
+</body>
 </template>
 
 <script>
@@ -57,6 +61,11 @@ export default {
 </script>
 
 <style scoped>
+body{
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
 .container {
   max-width: 400px;
   margin: 50px auto;

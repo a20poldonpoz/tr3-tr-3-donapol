@@ -1,4 +1,6 @@
 <template>
+  <body>
+
   <div>
     <Header />
 
@@ -10,12 +12,15 @@
         <label for="password">Contraseña</label>
         <input type="password" id="password" v-model="password" placeholder="contraseña actual">
 
-        <router-link to="/register" class="router-link">¿No tienes cuenta? Regístrate</router-link>
+        <router-link to="/register" class="router-link">¿No tens compte? Regístrat</router-link>
 
         <button type="submit">Login</button>
       </form>
     </div>
   </div>
+  <Footer />
+      
+</body>
 </template>
 
 <script>
@@ -57,6 +62,11 @@ export default {
 </script>
 
 <style scoped>
+body{
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
 .container {
   max-width: 400px;
   margin: 50px auto; 

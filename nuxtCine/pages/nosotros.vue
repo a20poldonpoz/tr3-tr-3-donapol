@@ -1,4 +1,6 @@
 <template>
+  <body>
+
   <Header />
   <div class="about-us">
     <h1>Sobre Nosaltres</h1>
@@ -30,9 +32,16 @@
     </div>
   </div>
   <Footer />
+      
+</body>
 </template>
 
 <style scoped>
+body{
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
 .about-us {
   max-width: 800px;
   margin: 0 auto;

@@ -21,9 +21,9 @@
         </div>
         <div class="footer-column">
           <h3>Contacte</h3>
-          <p>Direcció: Av.Olesa de Bonesvalls 27, Vallirana</p>
-          <p>Teléfono: 644887418</p>
-          <p>Email: info@cineliaco.com</p>
+          <p>Av.Olesa de Bonesvalls 27, Vallirana</p>
+          <p>644887418</p>
+          <p>info@cineliaco.com</p>
         </div>
       </div>
     </div>

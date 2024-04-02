@@ -1,4 +1,5 @@
 <template>
+  <body>
   <div>
     <Header />
     <h1 class="title">Pròximes sessions</h1> 
@@ -25,6 +26,7 @@
     </div>
   </div>
   <Footer />
+</body>
 </template>
 
 <script>
@@ -56,7 +58,12 @@ export default {
 };
 </script>
 
-<style lang="css" scoped>
+<style scoped>
+body{
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
 .container {
   display: flex;
   flex-wrap: wrap;

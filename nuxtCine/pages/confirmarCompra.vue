@@ -1,4 +1,7 @@
 <template>
+  <body>
+    
+ 
   <div>
     <Header />
     <div class="ticket">
@@ -27,6 +30,8 @@
     <!-- Botón para abrir el campo de entrada -->
     <button v-if="!mostrarEmail" class="reserve-button" @click="mostrarEmail = true">Reservar Película</button>
   </div>
+  <Footer />
+</body>
 </template>
 
 <script>
@@ -129,6 +134,11 @@ export default {
 </script>
 
 <style scoped>
+body{
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
 
 .ticket {
   font-family: 'Roboto', sans-serif;
