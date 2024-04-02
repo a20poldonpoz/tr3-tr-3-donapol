@@ -58,13 +58,13 @@ export default {
       this.nomPeli = this.$route.query.nomPeli;
     }
 
-    // Obtener el ID de la película de la URL
+    // Obtener el ID de la película 
     this.movieSessionId = this.$route.query.movieSessionId;
   },
-
   methods: {
     confirmarCompra() {
       this.loading = true;
+
       const promises = this.infoSeients.map(infoSeient => {
         const data = {
           movie_id: this.movieSessionId,

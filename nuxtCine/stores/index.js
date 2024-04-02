@@ -5,20 +5,25 @@ export const useStore = defineStore({
   id: 'main',
   state: () => ({
     user_id: null,
-    correo: null
+    email: null
   }),
   actions: {
-    guardarInfoUser() {
-        this.user_id = user.id,
-        this.correo = correo
+    guardarInfoUser(id, email) {
+        this.user_id = id,
+        this.email = email
     },
 
     obtenerInfoUser() {
         return this.user_id
     },
 
-    obtenerCorreo(){
-        return this.correo
+    obteneremail() {
+      return this.email
+  },
+
+
+    guardarEmail(){
+      this.email = email
     }
   },
 });
