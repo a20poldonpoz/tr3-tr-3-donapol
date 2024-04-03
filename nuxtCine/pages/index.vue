@@ -96,10 +96,11 @@ body{
 }
 
 .card {
-  width: 300px;
-  height: 400px;
+  width: 300px; 
+  height: 400px; 
   background-color: #fff;
-  margin: 30px;
+  margin: 20px;
+  margin-bottom: 40px;
   overflow: hidden;
   border-radius: 15px;
   transition: 0.3s ease-in-out;
@@ -107,18 +108,18 @@ body{
 }
 
 .card:hover {
-  height: 400px;
+  height: 400px; 
 }
 
 .card .image img {
   width: 100%;
   height: auto;
   border-radius: 15px;
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out; 
 }
 
 .card:hover .image img {
-  transform: scale(1.4);
+  transform: scale(1.4); 
 }
 
 .card .content {
@@ -127,13 +128,14 @@ body{
   left: 0;
   width: 100%;
   background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
   box-sizing: border-box;
-  transform: translateY(100%);
-  transition: transform 0.3s ease-in-out;
+  transform: translateY(100%); 
+  transition: transform 0.3s ease-in-out; 
 }
 
 .card:hover .content {
-  transform: translateY(0);
+  transform: translateY(0); 
 }
 
 h3 {

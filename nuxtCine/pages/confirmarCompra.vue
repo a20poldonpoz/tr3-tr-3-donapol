@@ -75,7 +75,9 @@ export default {
           movie_id: this.movieSessionId,
           seat_id: infoSeient.id,
           preu: this.preuTotal,
-          email: this.email
+          email: this.email,
+          fila: this.fila,       
+          columna: this.columna
         };
 
         return this.reservarAsiento(data); // Llama funció per reserva seient
@@ -101,19 +103,19 @@ export default {
     
     // Función para reservar asiento
     reservarAsiento(data) {
-      return fetch('http://localhost:8000/api/tickets', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      }).then(response => {
-        if (!response.ok) {
-          throw new Error('Error al confirmar la compra');
-        }
-        return data.seat_id;
-      });
+  return fetch('http://localhost:8000/api/tickets', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
     },
+    body: JSON.stringify(data)
+  }).then(response => {
+    if (!response.ok) {
+      throw new Error('Error al confirmar la compra');
+    }
+    return data.seat_id;
+  });
+},
 
     // Función para cambiar estado de asiento
     cambiarEstadoAsiento(seatId) {

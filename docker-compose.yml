@@ -25,6 +25,7 @@ services:
     container_name: nuxt
     working_dir: /app
     environment:
+      - CHOKIDAR_USEPOLLNG=true
       - MODE_ENV=development
     volumes:
       - ./nuxtCine:/app
