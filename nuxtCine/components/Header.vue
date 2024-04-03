@@ -1,7 +1,7 @@
 <template>
   <header class="header">
     <div class="logo" @click="goToHome">
-      <img src="../img/logo.png" alt="Logo" />
+      <img src="../public/img/logo.PNG" alt="Logo" />
     </div>
     <nav class="nav">
       <ul>

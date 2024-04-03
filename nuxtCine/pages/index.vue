@@ -99,7 +99,7 @@ body{
   width: 300px;
   height: 400px;
   background-color: #fff;
-  margin: 20px;
+  margin: 30px;
   overflow: hidden;
   border-radius: 15px;
   transition: 0.3s ease-in-out;
