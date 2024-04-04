@@ -42,10 +42,12 @@ class MovieController extends Controller
         return response()->json($movie,200);
     }
 
-    public function delete(Request $request, $id){
-        $movie = Movie::findOrFail($id);
-        $movie->delete();
-    }
+    public function destroy($id){
+      $movie = Movie::findOrFail($id);
+      $movie->delete();
+      return response()->json(['message' => 'Película eliminada correctamente'], 200);
+  }
+  
 
     public function insert(Request $request)
     {

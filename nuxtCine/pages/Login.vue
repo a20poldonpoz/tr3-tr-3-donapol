@@ -50,8 +50,9 @@ export default {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const store= useStore()
-        store.correo="hol"
-        this.$router.push('/cartelera');
+        store.email=this.email,
+
+       this.$router.push('/cartelera');
 
       } catch (error) {
         console.error('ERROR ERROR ERROR: ', error);
