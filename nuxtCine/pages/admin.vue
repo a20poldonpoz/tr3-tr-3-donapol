@@ -18,29 +18,22 @@
         <tr v-for="estreno in estrenos" :key="estreno.id">
           <td><img :src="estreno.img" alt="Portada de la película" class="movie-image" /></td>
           <td>
-            <span v-if="!estreno.editando" @click="estreno.editando = true">{{ estreno.titol }}</span>
-            <input v-else v-model="estreno.titolEditado" @keyup.enter="guardarCambios(estreno)">
+            <span>{{ estreno.titol }}</span>
           </td>
           <td>
-            <span v-if="!estreno.editando" @click="estreno.editando = true">{{ estreno.director }}</span>
-            <input v-else v-model="estreno.directorEditado" @keyup.enter="guardarCambios(estreno)">
+            <span>{{ estreno.director }}</span>
           </td>
           <td>
-            <span v-if="!estreno.editando" @click="estreno.editando = true">{{ estreno.any }}</span>
-            <input v-else v-model="estreno.anyEditado" @keyup.enter="guardarCambios(estreno)">
+            <span>{{ estreno.any }}</span>
           </td>
           <td>
-            <span v-if="!estreno.editando" @click="estreno.editando = true">{{ estreno.hora }}</span>
-            <input v-else v-model="estreno.horaEditado" @keyup.enter="guardarCambios(estreno)">
+            <span>{{ estreno.hora }}</span>
           </td>
           <td>
-            <span v-if="!estreno.editando" @click="estreno.editando = true">{{ estreno.descripcio }}</span>
-            <input v-else v-model="estreno.descripcioEditado" @keyup.enter="guardarCambios(estreno)">
+            <span>{{ estreno.descripcio }}</span>
           </td>
           <td>
-            <button v-if="!estreno.editando" @click="estreno.editando = true">Editar</button>
-            <button v-else @click="guardarCambios(estreno)">Guardar</button>
-            <button @click="eliminarEstreno(estreno.id)">Eliminar</button>
+            <button class="delete-button" @click="eliminarEstreno(estreno.id)">Eliminar</button>
           </td>
         </tr>
       </tbody>
@@ -65,11 +58,6 @@ export default {
             this.estrenos = data.map(estreno => ({
               ...estreno,
               editando: false,
-              titolEditado: estreno.titol,
-              directorEditado: estreno.director,
-              anyEditado: estreno.any,
-              horaEditado: estreno.hora,
-              descripcioEditado: estreno.descripcio
             }));
           } else {
             console.log("Error de fetch");
@@ -87,7 +75,7 @@ export default {
           .then((response) => {
             if (response.ok) {
               // Eliminación exitosa, actualiza la lista de películas
-              this.fetchData();
+              this.estrenos = this.estrenos.filter(estreno => estreno.id !== id);
             } else {
               console.error("Error al eliminar película");
             }
@@ -97,33 +85,6 @@ export default {
           });
       }
     },
-    guardarCambios(estreno) {
-      fetch(`http://localhost:8000/api/movies/${estreno.id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          titol: estreno.titolEditado,
-          director: estreno.directorEditado,
-          any: estreno.anyEditado,
-          hora: estreno.horaEditado,
-          descripcio: estreno.descripcioEditado
-        })
-      })
-      .then(response => {
-        if (response.ok) {
-          // Actualización exitosa, cambia el estado de edición y actualiza la lista de películas
-          estreno.editando = false;
-          this.fetchData();
-        } else {
-          console.error("Error al guardar cambios");
-        }
-      })
-      .catch(error => {
-        console.error("Error de red:", error);
-      });
-    }
   },
   mounted() {
     this.fetchData();
@@ -146,5 +107,21 @@ export default {
 .movie-image {
   width: 80px; 
   height: auto;
+}
+
+.edit-button {
+  background-color: blue;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.delete-button {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
 }
 </style>

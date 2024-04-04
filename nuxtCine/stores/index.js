@@ -1,29 +1,28 @@
 // ~/store/index.js
-import {defineStore } from 'pinia';
+import { defineStore } from 'pinia';
 
 export const useStore = defineStore({
   id: 'main',
   state: () => ({
     user_id: null,
-    email: null
+    email: null,
+    isAuthenticated: false 
   }),
   actions: {
-    guardarInfoUser(id, email) {
-        this.user_id = id,
-        this.email = email
+    login(id, email) {
+      this.user_id = id;
+      this.email = email;
+      this.isAuthenticated = true;
     },
 
-    obtenerInfoUser() {
-        return this.user_id
+    logout() {
+      this.user_id = null;
+      this.email = null;
+      this.isAuthenticated = false;
     },
 
-    obteneremail() {
-      return this.email
-  },
-
-
-    guardarEmail(){
-      this.email = email
+    getAuthenticationStatus() {
+      return this.isAuthenticated;
     }
-  },
+  }
 });

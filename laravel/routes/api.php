@@ -7,6 +7,7 @@ use App\Http\Controllers\SessionController;
 use App\Http\Controllers\SeatController;
 use App\Http\Controllers\ReservationController; 
 use App\Http\Controllers\TicketController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // Ruta per verificar si un usuari a fet login
     Route::middleware('auth:api')->get('/check-auth', [AuthController::class, 'checkAuth']);
+
+// Ruta para cerrar sesión
+    Route::middleware('auth:api')->post('/logout', [AuthController::class, 'logout']);
 
 //Rutas per els usuaris
     Route::post('register', [App\Http\Controllers\AuthController::class, 'register']);

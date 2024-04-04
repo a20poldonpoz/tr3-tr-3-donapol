@@ -24,7 +24,8 @@
 </template>
 
 <script>
-import {useStore} from '../stores/index.js'
+import { useStore } from '../stores/index.js'
+
 export default {
   data() {
     return {
@@ -49,10 +50,11 @@ export default {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
-        const store= useStore()
-        store.email=this.email,
 
-       this.$router.push('/cartelera');
+        const store = useStore();
+        store.login(this.email);
+
+        this.$router.push('/cartelera');
 
       } catch (error) {
         console.error('ERROR ERROR ERROR: ', error);
@@ -61,6 +63,7 @@ export default {
   }
 }
 </script>
+
 
 <style scoped>
 body{
