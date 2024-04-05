@@ -74,10 +74,10 @@ export default {
         const data = {
           movie_id: this.movieSessionId,
           seat_id: infoSeient.id,
+          fila: infoSeient.fila,
+          columna: infoSeient.columna,
           preu: this.preuTotal,
           email: this.email,
-          fila: this.fila,       
-          columna: this.columna
         };
 
         return this.reservarAsiento(data); // Llama funció per reserva seient

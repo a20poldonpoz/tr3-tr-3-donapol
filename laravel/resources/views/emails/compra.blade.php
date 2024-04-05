@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Confirmación de Compra</title>
+    <title>Confirmació Compra</title>
 </head>
 <body>
     <h2>Gràcies per la teva compra!</h2>
@@ -13,7 +13,7 @@
     <ul>
         <li>Pel·lícula: {{ $data['movie_id'] }}</li>
         <li>Preu Total: {{ $data['preu'] }}€</li>
-        <li>Butaca: Fila {{ $data['fila'] }}, Columna {{ $data['columna'] }}</li>
+        <li>Fila: {{ $data['fila']}} Columna: {{ $data['columna']}}</li>
     </ul>
 
     <p>Si tens alguna pregunta o necessites assistència, no dubtis en contactar-nos.</p>
