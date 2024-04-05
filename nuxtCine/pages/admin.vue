@@ -51,7 +51,7 @@ export default {
   },
   methods: {
     fetchData() {
-      fetch("http://localhost:8000/api/movies")
+      fetch("http://tr3pol.daw.inspedralbes.cat/laravel/public/api/movies")
         .then((response) => response.json())
         .then((data) => {
           if (data) {
@@ -69,7 +69,7 @@ export default {
     },
     eliminarEstreno(id) {
       if (confirm("¿Estás seguro de que quieres eliminar esta película?")) {
-        fetch(`http://localhost:8000/api/movies/${id}`, {
+        fetch(`http://tr3pol.daw.inspedralbes.cat/laravel/public/api/movies/${id}`, {
           method: "DELETE",
         })
           .then((response) => {

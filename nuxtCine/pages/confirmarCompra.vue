@@ -74,8 +74,6 @@ export default {
         const data = {
           movie_id: this.movieSessionId,
           seat_id: infoSeient.id,
-          fila: infoSeient.fila,
-          columna: infoSeient.columna,
           preu: this.preuTotal,
           email: this.email,
         };
@@ -103,7 +101,7 @@ export default {
     
     // Función para reservar asiento
     reservarAsiento(data) {
-  return fetch('http://localhost:8000/api/tickets', {
+  return fetch('http://tr3pol.daw.inspedralbes.cat/laravel/public/tickets', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -119,7 +117,7 @@ export default {
 
     // Función para cambiar estado de asiento
     cambiarEstadoAsiento(seatId) {
-      return fetch(`http://localhost:8000/api/seats/${seatId}/status`, {
+      return fetch(`http://tr3pol.daw.inspedralbes.cat/laravel/public/api/seats/${seatId}/status`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json'
