@@ -101,7 +101,7 @@ export default {
     
     // Función para reservar asiento
     reservarAsiento(data) {
-  return fetch('http://tr3pol.daw.inspedralbes.cat/laravel/public/tickets', {
+  return fetch('http://tr3pol.daw.inspedralbes.cat/laravel/public/api/tickets', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
