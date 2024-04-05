@@ -1,6 +1,8 @@
 <template>
-  <div>
+  <body>
     <Header />
+  <div class="formContainer">
+    
 
     <div class="container">
       <form @submit.prevent="fetchLogin">
@@ -10,16 +12,20 @@
         <label for="password">Contraseña</label>
         <input type="password" id="password" v-model="password" placeholder="contraseña actual">
 
-        <router-link to="/register" class="router-link">¿No tienes cuenta? Regístrate</router-link>
+        <router-link to="/register" class="router-link">¿No tens compte? Regístrat</router-link>
 
         <button type="submit">Login</button>
       </form>
     </div>
   </div>
+  <Footer />
+      
+</body>
 </template>
 
 <script>
-import {useStore} from '../stores/index.js'
+import { useStore } from '../stores/index.js'
+
 export default {
   data() {
     return {
@@ -44,8 +50,10 @@ export default {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
-        const store= useStore()
-        store.correo="hol"
+
+        const store = useStore();
+        store.login(this.email);
+
         this.$router.push('/cartelera');
 
       } catch (error) {
@@ -56,7 +64,18 @@ export default {
 }
 </script>
 
+
 <style scoped>
+body{
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.formContainer{
+  height: 58vh;
+}
+
 .container {
   max-width: 400px;
   margin: 50px auto; 

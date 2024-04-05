@@ -1,4 +1,7 @@
 <template>
+  <body>
+    
+
   <Header />
   <!-- Mostrar GIF de carga mientras carga la página -->
   <div v-if="!fetch_fet" class="loading-container">
@@ -80,6 +83,7 @@
       </button>
     </div>
   </div>
+</body>
 </template>
 
 <script>
@@ -212,7 +216,12 @@ calcularPrecioTotal() {
 };
 </script>
 
-<style lang="css" scoped>
+<style scoped>
+body{
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
 .container {
   display: flex;
   flex-direction: column;
@@ -278,7 +287,7 @@ calcularPrecioTotal() {
   bottom: 0;
   left: 0;
   width: 100%;
-  padding: 40px;
+  padding: 30px;
   background-color: #aeb3b8;
   color: black;
   display: flex;

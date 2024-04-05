@@ -1,23 +1,32 @@
 <?php
 
-    namespace App\Http\Controllers;
+namespace App\Http\Controllers;
 
-    use Illuminate\Http\Request;
-    use App\Models\Ticket;
+use Illuminate\Http\Request;
+use App\Models\Ticket;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ConfirmacionCompra;
 
-    class TicketController extends Controller
+class TicketController extends Controller
+{
+    public function store(Request $request)
     {
-        public function store(Request $request)
-        {
-            // Valida y guarda los datos del ticket en la base de datos
-            $ticket = new Ticket();
-            $ticket->movie_id = $request->input('movie_id');
-            $ticket->seat_id = $request->input('seat_id');
-            $ticket->preu = $request->input('preu');
-            $ticket->email = $request->input('email');
-            $ticket->save();
+        // Validar y guardar los datos del ticket en la base de datos
+        $ticket = new Ticket();
+        $ticket->movie_id = $request->input('movie_id');
+        $ticket->seat_id = $request->input('seat_id');
+        
+        $seatInfo = explode('_', $request->input('seat_id'));
+        $ticket->fila = $seatInfo[0];
+        $ticket->columna = $seatInfo[1];
+        
+        $ticket->preu = $request->input('preu');
+        $ticket->email = $request->input('email');
+        $ticket->save();
 
-            // Retorna una respuesta JSON indicando que el ticket se ha guardado correctamente
-            return response()->json(['message' => 'Ticket creado correctamente'], 201);
-        }
+        // Enviar correo de confirmación 
+        Mail::to($ticket->email)->send(new ConfirmacionCompra($ticket));
+
+        return response()->json(['message' => 'Ticket creado correctamente', 'data' => $ticket], 201);
     }
+}

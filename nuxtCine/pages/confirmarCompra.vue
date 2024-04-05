@@ -1,4 +1,7 @@
 <template>
+  <body>
+    
+ 
   <div>
     <Header />
     <div class="ticket">
@@ -27,6 +30,8 @@
     <!-- Botón para abrir el campo de entrada -->
     <button v-if="!mostrarEmail" class="reserve-button" @click="mostrarEmail = true">Reservar Película</button>
   </div>
+  <Footer />
+</body>
 </template>
 
 <script>
@@ -58,19 +63,21 @@ export default {
       this.nomPeli = this.$route.query.nomPeli;
     }
 
-    // Obtener el ID de la película de la URL
+    // Obtener el ID de la película 
     this.movieSessionId = this.$route.query.movieSessionId;
   },
-
   methods: {
     confirmarCompra() {
       this.loading = true;
+
       const promises = this.infoSeients.map(infoSeient => {
         const data = {
           movie_id: this.movieSessionId,
           seat_id: infoSeient.id,
           preu: this.preuTotal,
-          email: this.email
+          email: this.email,
+          fila: this.fila,       
+          columna: this.columna
         };
 
         return this.reservarAsiento(data); // Llama funció per reserva seient
@@ -129,6 +136,11 @@ export default {
 </script>
 
 <style scoped>
+body{
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
 
 .ticket {
   font-family: 'Roboto', sans-serif;
