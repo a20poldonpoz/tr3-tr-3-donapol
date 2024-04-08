@@ -74,6 +74,8 @@ export default {
         const data = {
           movie_id: this.movieSessionId,
           seat_id: infoSeient.id,
+          fila: infoSeient.fila, 
+          columna: infoSeient.columna, 
           preu: this.preuTotal,
           email: this.email,
         };

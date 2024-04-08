@@ -23,7 +23,7 @@ class TicketController extends Controller
     
 
         // Enviar correo de confirmación 
-      //Mail::to($ticket->email)->send(new ConfirmacionCompra($ticket, $movie->titol));
+      Mail::to($ticket->email)->send(new ConfirmacionCompra($ticket));
 
         return response()->json(['message' => 'Ticket creado correctamente', 'data' => $ticket], 201);
     }
