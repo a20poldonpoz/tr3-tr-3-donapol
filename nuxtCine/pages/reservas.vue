@@ -1,24 +1,27 @@
 <template>
   <body>
     <Header />
-  <div>
-    <input type="email" placeholder="Ingrese su correo electrónico" v-model="email">
-    <button @click="buscarReservas">Buscar Reservas</button>
-    <div v-if="reservas.length > 0">
-      <h1>Les teves sessions</h1>
-      <ul>
-        <li v-for="(reserva, index) in reservas" :key="index">
-          <p>Película: {{ reserva.movie_title }}</p>
-          <p>Sala: {{ reserva.movie_id }}</p>
-        </li>
-      </ul>
+    <div class="container">
+      <div class="content">
+        <h1 class="titulo">Les meves sessions</h1>
+        <input type="email" placeholder="Ingrese su correo electrónico" v-model="email" class="input-email">
+        <button @click="buscarReservas" class="buscar-button">Buscar Reservas</button>
+        <div v-if="reservas.length > 0">
+          <ul>
+            <li v-for="(reserva, index) in reservas" :key="index" class="reserva-item">
+              <p class="pelicula">Película: {{ reserva.movie_title }}</p>
+              <p class="sala">Sala: {{ reserva.movie_id }}</p>
+              <p class="preu">Preu: {{ reserva.preu }}</p>
+            </li>
+          </ul>
+        </div>
+        <div v-if="mensajeError" class="error-message">
+          <p>{{ mensajeError }}</p>
+        </div>
+      </div>
     </div>
-    <div v-if="mensajeError">
-      <p>{{ mensajeError }}</p>
-    </div>
-  </div>
-  <Footer />
-</body>
+    <Footer />
+  </body>
 </template>
 
 <script>
@@ -83,6 +86,71 @@ export default {
 body {
   margin: 0;
   padding: 0;
-  height: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  padding: 20px;
+  max-width: 600px;
+  width: 100%;
+}
+
+.input-email {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.buscar-button {
+  width: 100%;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.titulo {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.reserva-item {
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  padding: 15px;
+  margin-bottom: 10px;
+}
+
+.pelicula {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.sala {
+  font-size: 16px;
+  color: #777;
+}
+
+.preu {
+  font-size: 16px;
+  color: #777;
+}
+
+.error-message {
+  color: red;
+  margin-top: 20px;
 }
 </style>

@@ -15,6 +15,8 @@ class TicketController extends Controller
         $ticket = new Ticket();
         $ticket->movie_id = $request->input('movie_id');
         $ticket->seat_id = $request->input('seat_id');
+        $ticket->fila = $request->input('fila');
+        $ticket->columna = $request->input('columna');
         $ticket->preu = $request->input('preu');
         $ticket->email = $request->input('email');
         $ticket->save();

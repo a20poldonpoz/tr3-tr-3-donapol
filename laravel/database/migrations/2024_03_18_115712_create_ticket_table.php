@@ -17,6 +17,8 @@ class CreateTicketTable extends Migration
             $table->id();
             $table->unsignedBigInteger('movie_id');
             $table->unsignedBigInteger('seat_id');
+            $table->integer('fila')->nullable();
+            $table->integer('columna')->nullable();
             $table->decimal('preu', 4, 2);
             $table->string('email');
             $table->timestamps();
