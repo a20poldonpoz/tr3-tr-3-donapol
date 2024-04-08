@@ -13,7 +13,7 @@ use App\Http\Controllers\AuthController;
 |--------------------------------------------------------------------------
 | API Routes
 |--------------------------------------------------------------------------
-|
+| 
 | Here is where you can register API routes for your application. These
 | routes are loaded by the RouteServiceProvider and all of them will
 | be assigned to the "api" middleware group. Make something great!
@@ -52,6 +52,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 //Rutas per els tickets de compra
     Route::post('tickets', [TicketController::class, 'store']); // Crear un ticket
+    Route::get('tickets', [TicketController::class, 'getTickets']); // Obtindre tickets d'un correu
+
 
 
 
