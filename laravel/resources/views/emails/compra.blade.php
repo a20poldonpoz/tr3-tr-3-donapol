@@ -11,10 +11,10 @@
 
     <p>Detalls de la compra:</p>
     <ul>
-        <li>Pel·lícula: {{ $data['movie_id'] }}</li>
-        <li>Preu Total: {{ $data['preu'] }}€</li>
+        <li>Sala: {{ $data['movie_id'] }}</li>
         <li>Fila: {{ $data['fila'] }}</li> 
         <li>Columna: {{ $data['columna'] }}</li>
+        <li>Preu Total: {{ $data['preu'] }}€</li>
     </ul>
 
     <p>Si tens alguna pregunta o necessites assistència, no dubtis en contactar-nos.</p>

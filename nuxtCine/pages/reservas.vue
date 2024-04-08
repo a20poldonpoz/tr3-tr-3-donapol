@@ -4,16 +4,21 @@
     <div class="container">
       <div class="content">
         <h1 class="titulo">Les meves sessions</h1>
-        <input type="email" placeholder="Ingrese su correo electrónico" v-model="email" class="input-email">
+        <input type="email" placeholder="Introdueix el correu" v-model="email" class="input-email" :class="{ 'loading-animation': loading }">
         <button @click="buscarReservas" class="buscar-button">Buscar Reservas</button>
-        <div v-if="reservas.length > 0">
-          <ul>
-            <li v-for="(reserva, index) in reservas" :key="index" class="reserva-item">
-              <p class="pelicula">Película: {{ reserva.movie_title }}</p>
-              <p class="sala">Sala: {{ reserva.movie_id }}</p>
-              <p class="preu">Preu: {{ reserva.preu }}</p>
-            </li>
-          </ul>
+        <div v-if="reservas.length > 0" class="grid-container">
+          <div v-for="(reserva, index) in reservas" :key="index" class="reserva-ticket">
+            <div class="ticket">
+              <div class="ticket-header">
+                <h2 class="pelicula">{{ reserva.movie_title }}</h2>
+              </div>
+              <div class="ticket-body">
+                <p class="sala">Sala: {{ reserva.movie_id }}</p>
+                <p class="sala">Fila: {{ reserva.fila }} - Columna: {{ reserva.columna }}</p>
+                <p class="preu">Preu: {{ reserva.preu }}</p>
+              </div>
+            </div>
+          </div>
         </div>
         <div v-if="mensajeError" class="error-message">
           <p>{{ mensajeError }}</p>
@@ -30,11 +35,13 @@ export default {
     return {
       email: '',
       reservas: [],
-      mensajeError: ''
+      mensajeError: '',
+      loading: false
     };
   },
   methods: {
     buscarReservas() {
+      this.loading = true; // Mostrar animación de carga
       fetch(`http://localhost:8000/api/tickets?email=${this.email}`)
         .then(response => {
           if (!response.ok) {
@@ -69,13 +76,16 @@ export default {
           Promise.all(fetchMovies)
             .then(() => {
               console.log('Fetch completado');
+              this.loading = false; // Ocultar animación de carga
             })
             .catch(error => {
               console.error('Error en el fetch:', error.message);
+              this.loading = false; // Ocultar animación de carga
             });
         })
         .catch(error => {
           this.mensajeError = error.message;
+          this.loading = false; // Ocultar animación de carga
         });
     }
   }
@@ -104,6 +114,12 @@ body {
   width: 100%;
 }
 
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 2fr));
+  grid-gap: 20px;
+}
+
 .input-email {
   width: 100%;
   padding: 10px;
@@ -127,24 +143,36 @@ body {
   margin-bottom: 20px;
 }
 
-.reserva-item {
-  background-color: #f9f9f9;
-  border-radius: 5px;
-  padding: 15px;
-  margin-bottom: 10px;
+.reserva-ticket {
+  list-style-type: none;
+}
+
+.ticket {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.ticket-header {
+  background-color: #007bff;
+  color: white;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding: 10px;
 }
 
 .pelicula {
-  font-size: 18px;
-  margin-bottom: 5px;
+  margin: 0;
 }
 
-.sala {
-  font-size: 16px;
-  color: #777;
+.ticket-body {
+  padding: 10px;
 }
 
+.sala,
 .preu {
+  margin: 5px 0;
   font-size: 16px;
   color: #777;
 }
@@ -152,5 +180,20 @@ body {
 .error-message {
   color: red;
   margin-top: 20px;
+}
+
+.loading-animation::before {
+  content: " ";
+  position: absolute;
+  width: 0;
+  height: 3px;
+  background: red;
+  animation: loading 0.885s linear infinite;
+}
+
+@keyframes loading {
+  0% {
+    width: 0;
+  }
 }
 </style>
