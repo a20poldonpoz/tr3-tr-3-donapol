@@ -36,7 +36,7 @@ export default {
   methods: {
     async fetchLogin() {
       try {
-        const response = await fetch('http://tr3pol.daw.inspedralbes.cat/laravel/public/api/register', {
+        const response = await fetch('http://localhost:8000/api/register', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

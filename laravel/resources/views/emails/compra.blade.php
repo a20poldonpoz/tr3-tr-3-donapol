@@ -13,7 +13,7 @@
     <ul>
         <li>Pel·lícula: {{ $data['movie_id'] }}</li>
         <li>Preu Total: {{ $data['preu'] }}€</li>
-        <li>Fila: {{ $data['fila']}} Columna: {{ $data['columna']}}</li>
+        <li>Butaca: {{ $data['seat_id']}}</li>
     </ul>
 
     <p>Si tens alguna pregunta o necessites assistència, no dubtis en contactar-nos.</p>

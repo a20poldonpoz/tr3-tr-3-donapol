@@ -104,7 +104,7 @@ export default {
 
     // Obté les dades de la sessió de la pel·lícula des del servidor
     fetchData() {
-      fetch(`http://tr3pol.daw.inspedralbes.cat/laravel/public/api/movies/${this.movie_session_id}`)
+      fetch(`http://localhost:8000/api/movies/${this.movie_session_id}`)
         .then((response) => response.json())
         .then((data) => {
           if (data) {
@@ -120,7 +120,7 @@ export default {
     },
     // Obté les dades dels seients disponibles per a la sessió de la pel·lícula
     fetchDataSeats() {
-      fetch(`http://tr3pol.daw.inspedralbes.cat/laravel/public/api/seient/${this.movie_session_id}`)
+      fetch(`http://localhost:8000/api/seient/${this.movie_session_id}`)
         .then((response) => response.json())
         .then((data) => {
           if (data) {

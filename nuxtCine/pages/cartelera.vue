@@ -38,7 +38,7 @@ export default {
   },
   methods: {
     fetchData() {
-      fetch("http://tr3pol.daw.inspedralbes.cat/laravel/public/api/movies")
+      fetch("http://localhost:8000/api/movies")
         .then((response) => response.json())
         .then((data) => {
           if (data) {
