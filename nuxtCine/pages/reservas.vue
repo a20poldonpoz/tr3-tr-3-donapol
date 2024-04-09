@@ -112,6 +112,9 @@ body {
   padding: 20px;
   max-width: 600px;
   width: 100%;
+  background-color: #ffffff; 
+  border-radius: 10px; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
 }
 
 .grid-container {
@@ -121,21 +124,29 @@ body {
 }
 
 .input-email {
-  width: 100%;
+  width: calc(100% - 20px); 
   padding: 10px;
   font-size: 16px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc; 
+  border-radius: 5px; 
 }
 
 .buscar-button {
-  width: 100%;
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
+  width: calc(100% - 20px); 
+  padding: 20px;
+  background-color: #393a39;
+  color: yellow;
   border: none;
-  border-radius: 5px;
+  border-radius: 5px; 
   font-size: 16px;
   cursor: pointer;
+  transition: background-color 0.3s; 
+  margin-bottom: 15px;
+}
+
+.buscar-button:hover {
+  background-color: #393a39; 
 }
 
 .titulo {
@@ -155,8 +166,8 @@ body {
 }
 
 .ticket-header {
-  background-color: #007bff;
-  color: white;
+  background-color: #393a39; 
+  color: yellow;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   padding: 10px;
@@ -180,20 +191,5 @@ body {
 .error-message {
   color: red;
   margin-top: 20px;
-}
-
-.loading-animation::before {
-  content: " ";
-  position: absolute;
-  width: 0;
-  height: 3px;
-  background: red;
-  animation: loading 0.885s linear infinite;
-}
-
-@keyframes loading {
-  0% {
-    width: 0;
-  }
 }
 </style>

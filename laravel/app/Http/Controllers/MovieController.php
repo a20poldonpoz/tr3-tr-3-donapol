@@ -36,18 +36,11 @@ class MovieController extends Controller
     }
 
     public function update(Request $request, $id)
-    {
-        $movie = Movie::findOrFail($id);
-        
-        $movie->update([
-            'titol' => $validatedData['titol'] ?? $movie->titol,
-            'director' => $validatedData['director'] ?? $movie->director,
-            'any' => $validatedData['any'] ?? $movie->any,
-            'descripcio' => $validatedData['descripcio'] ?? $movie->descripcio,
-            'hora' => $validatedData['hora'] ?? $movie->hora,
-        ]);
+    {     
+      $movie = Movie::findOrFail($id);
+      $movie->update($request->all());
     
-        return response()->json($movie, 200);
+      return response()->json($movie, 200);
     }
 
     public function destroy($id){
