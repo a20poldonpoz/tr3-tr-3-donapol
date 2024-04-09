@@ -35,7 +35,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     Route::post('login', [App\Http\Controllers\AuthController::class, 'login']);
 
 // Rutas per las películas
-    Route::post('movies', [App\Http\Controllers\MovieController::class, 'insert']); //Insertar nueva peli
+    Route::post('movies', [App\Http\Controllers\MovieController::class, 'store']); //Insertar nueva peli
     Route::get('movies', [App\Http\Controllers\MovieController::class, 'index']); //Mostrar todas las pelis
     Route::get('movies/{id}', [App\Http\Controllers\MovieController::class, 'show']); //Mostrar una peli por id
     Route::put('movies/{id}', [App\Http\Controllers\MovieController::class, 'update']); //Actualizar peli

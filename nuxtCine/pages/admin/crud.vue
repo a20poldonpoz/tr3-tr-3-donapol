@@ -51,6 +51,7 @@
             <td>
               <button class="delete-button" @click="eliminarEstreno(estreno.id)">Eliminar</button>
               <button class="edit-button" @click="editarEstreno(estreno)">Editar</button>
+              <button class="create-button" @click="crearPelicula()">Crear Película</button>
               <button v-if="estreno.editando" @click="guardarEdicion(estreno)">Guardar</button>
               <button v-if="estreno.editando" @click="cancelarEdicion(estreno)">Cancelar</button>
             </td>
@@ -95,18 +96,16 @@ export default {
           console.error(error);
         });
     },
+    crearPelicula(){
+      navigateTo('/admin/create');
+    },
     eliminarEstreno(id) {
-      if (confirm("¿Estás seguro de que quieres eliminar esta película?")) {
+      if (confirm("¿Estás segur de que vols eliminar la película?")) {
         fetch(`http://localhost:8000/api/movies/${id}`, {
           method: "DELETE",
         })
           .then((response) => {
-            if (response.ok) {
-              // Eliminación exitosa, actualiza la lista de películas
               this.estrenos = this.estrenos.filter(estreno => estreno.id !== id);
-            } else {
-              console.error("Error al eliminar película");
-            }
           })
           .catch((error) => {
             console.error("Error de red:", error);
@@ -114,9 +113,7 @@ export default {
       }
     },
     editarEstreno(estreno) {
-      // Marcar el estreno como editando
       estreno.editando = true;
-      // Copiar los datos del estreno al formulario de edición
       this.formularioEdicion = {
         ...estreno
       };
@@ -131,18 +128,15 @@ export default {
       })
       .then(response => response.json())
       .then(data => {
-        // Actualizar los datos del estreno editado en la lista
+        //Actualitzar les dades de la sessio
         const index = this.estrenos.findIndex(item => item.id === data.id);
         this.estrenos.splice(index, 1, data);
-        // Restablecer el formulario de edición y marcar el estreno como no editando
+        //Cancelar dades
         this.cancelarEdicion(estreno);
-      })
-      .catch(error => {
-        console.error("Error al actualizar película:", error);
       });
     },
     cancelarEdicion(estreno) {
-      // Restablecer el formulario de edición y marcar el estreno como no editando
+      //Deijar el formulari com estaba
       this.formularioEdicion = {
         id: null,
         titol: '',

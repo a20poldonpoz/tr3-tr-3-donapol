@@ -9,21 +9,20 @@ class MovieController extends Controller
 {
    
 
-    public function store(Request $request)
-    {
-        $validatedData = $request->validate([
-            'titol' => 'required|string',
-            'director' => 'required|string',
-            'any' => 'required|integer',
-            'descripcio' => 'required|string',
-            'hora'=>'required|time',
-        ]);
+  public function store(Request $request)
+  {
+    $validatedData = $request->validate([
+      'titol' => 'required|string',
+      'director' => 'required|string',
+      'any' => 'required|integer',
+      'descripcio' => 'required|string',
+      'hora' => 'required|date_format:H:i:s',
+  ]);
 
-        $movie = Movie::create($validatedData);
+      $movie = Movie::create($validatedData);
 
-
-        return response()->json($movie, 201);
-    }
+      return response()->json($movie, 201);
+  }
 
     public function index()
     {
@@ -48,22 +47,4 @@ class MovieController extends Controller
       $movie->delete();
       return response()->json(['message' => 'Película eliminada correctamente'], 200);
   }
-  
-
-    public function insert(Request $request)
-    {
-        $movies = $request->json()->all();
-
-        foreach ($movies as $movie) {
-            Movie::create([
-                'titol' => $movie['titol'],
-                'director' => $movie['director'],
-                'any' => $movie['any'],
-                'descripcio' => $movie['descripcio'],
-                'hora' => $movie['hora'],
-            ]);
-        }
-        return response()->json(['message' => 'Pelicula insertada'], 201);
-      
-    }
 }
