@@ -3,7 +3,7 @@
     <Header />
     <div class="container">
       <div class="content">
-        <h1 class="titulo">Mis Reservas</h1>
+        <h1 class="titulo">Entrades</h1>
         <div v-if="loading" class="loading-animation">Cargando...</div>
         <div v-else>
           <div v-if="reservas.length > 0" class="grid-container">
@@ -15,13 +15,13 @@
                 <div class="ticket-body">
                   <p class="sala">Sala: {{ reserva.movie_id }}</p>
                   <p class="sala">Fila: {{ reserva.fila }} - Columna: {{ reserva.columna }}</p>
-                  <p class="preu">Precio: {{ reserva.preu }}</p>
+                  <p class="preu">Preu: {{ reserva.preu }}</p>
                 </div>
               </div>
             </div>
           </div>
           <div v-else>
-            <p>No tienes reservas.</p>
+            <p>No tens entrades.</p>
           </div>
         </div>
         <div v-if="mensajeError" class="error-message">

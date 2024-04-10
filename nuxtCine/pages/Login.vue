@@ -24,13 +24,13 @@
 </template>
 
 <script>
-import { useStore } from '../stores/index.js'
 
 export default {
   data() {
     return {
       email: '',
       password: '',
+      tipusUsuari: '',
       user_id: null,
       ErrorPost: false,
     }
@@ -77,7 +77,7 @@ export default {
       }
 
       const userStore = useStore();
-      userStore.guardar_info_usuari(data.user.name, this.email, this.user_id);
+      userStore.guardar_info_usuari(data.user.name, this.email, this.user_id, this.tipusUsuari);
 
       this.$router.push('/cartelera');
 

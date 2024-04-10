@@ -8,13 +8,15 @@
       email: null,
       loguejat: false,
       username: "",
+      tipusUsuari: "",
     }),
     actions: {
       guardar_info_usuari(username, email, id) {
         this.username = username;
         this.email = email;
         this.user_id = id;
-         this.loguejat = true;
+        this.loguejat = true;
+        this.tipusUsuari = tipusUsuari;
       },
 
 
@@ -22,6 +24,7 @@
         this.user_id = null;
         this.email = null;
         this.loguejat = false;
+        this.tipusUsuari = "";
         this.username = "";
       },
 

@@ -17,8 +17,6 @@
 </template>
 
 <script>
-import { useStore } from '../stores/index.js';
-
 export default {
   name: 'Header',
   computed: {
@@ -26,6 +24,10 @@ export default {
       const userStore = useStore();
       return userStore.loguejat;
     },
+    admin() {
+      const userStore = useStore();
+      return userStore.tipusUsuari;
+    }
   },
   methods: {
     async logout() {
