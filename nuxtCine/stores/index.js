@@ -19,6 +19,9 @@
         this.tipusUsuari = tipusUsuari;
       },
 
+      returnTipus() {
+        return this.tipusUsuari;
+      }, 
 
       logout() {
         this.user_id = null;

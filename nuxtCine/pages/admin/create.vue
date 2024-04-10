@@ -61,6 +61,13 @@ export default {
         console.error('Error al crear película:', error);
       }
     }
+  }, 
+  beforeMount() {
+    const store = useStore();
+    this.tipusUsuari = store.returnTipus();
+    if(this.tipusUsuari !== 'admin') {
+      this.$router.push('/'); // Si el usuario no es administrador, redirige a otra página
+    }
   }
 };
 </script>

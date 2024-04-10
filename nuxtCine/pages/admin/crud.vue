@@ -75,7 +75,8 @@ export default {
         any: null,
         hora: '',
         descripcio: ''
-      }
+      },
+      tipusUsuari: null
     };
   },
   methods: {
@@ -151,6 +152,13 @@ export default {
   mounted() {
     this.fetchData();
   },
+  beforeMount() {
+    const store = useStore();
+    this.tipusUsuari = store.returnTipus();
+    if(this.tipusUsuari !== 'admin') {
+      this.$router.push('/'); // Si el usuario no es administrador, redirige a otra página
+    }
+  }
 };
 </script>
 
