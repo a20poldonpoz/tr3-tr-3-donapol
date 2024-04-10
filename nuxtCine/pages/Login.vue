@@ -30,7 +30,7 @@ export default {
     return {
       email: '',
       password: '',
-      tipusUsuari: '',
+      tipusUsuari: null,
       user_id: null,
       ErrorPost: false,
     }
@@ -59,32 +59,40 @@ export default {
       }
     },
     async fetchId() {
-      try{
-      let response = await fetch (`http://localhost:8000/api/get-id?email=${encodeURIComponent(this.email)}`, {
-      });
-      if (!response.ok) {
-        throw new Error(`HTTp error! status: ${response.status}`);
-      }
-      let data = await response.json();
-
-      this.user_id = data.user.id;
-      if(this.user_id == null) {
-        alert('ERROR FETCH USER');
-        setTimeout(() =>{
-          this.ErrorPost = true;
-        }, 2500);
-        this.ErrorPost = false;
-      }
-
-      const userStore = useStore();
-      userStore.guardar_info_usuari(data.user.name, this.email, this.user_id, this.tipusUsuari);
-
-      this.$router.push('/cartelera');
-
-      } catch (error) {
-        console.error('ERROR FETCH USER: ', error);
-      }
+  try {
+    let response = await fetch(`http://localhost:8000/api/get-id?email=${encodeURIComponent(this.email)}`);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
+    let data = await response.json();
+    
+    console.log('Data from backend:', data); // Verifica la respuesta de tu backend
+
+    this.user_id = data.user.id;
+    this.tipusUsuari = data.user.tipus;
+
+    console.log('tipusUsuari:', this.tipusUsuari); // Verifica que tipusUsuari se haya asignado correctamente
+
+    if (this.user_id == null) {
+      alert('ERROR FETCH USER');
+      setTimeout(() => {
+        this.ErrorPost = true;
+      }, 2500);
+      this.ErrorPost = false;
+    }
+
+    const userStore = useStore();
+    userStore.guardar_info_usuari(data.user.name, this.email, this.user_id, this.tipusUsuari);
+
+    this.$router.push('/cartelera');
+
+  } catch (error) {
+    console.error('ERROR FETCH USER: ', error);
+  }
+}
+
+
+
 
   }
 }

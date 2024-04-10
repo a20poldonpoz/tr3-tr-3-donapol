@@ -11,7 +11,7 @@
       tipusUsuari: "",
     }),
     actions: {
-      guardar_info_usuari(username, email, id) {
+      guardar_info_usuari(username, email, id, tipusUsuari) {
         this.username = username;
         this.email = email;
         this.user_id = id;

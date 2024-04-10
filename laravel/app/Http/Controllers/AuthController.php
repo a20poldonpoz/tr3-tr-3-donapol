@@ -51,19 +51,21 @@ class AuthController extends Controller
     }
 
     public function login(Request $request)
-    {
-        // Validación aquí
+{
+    // Validación aquí
 
-        $credentials = $request->only('email', 'password');
+    $credentials = $request->only('email', 'password');
 
-        $user = User::where('email', $credentials['email'])->first();
+    $user = User::where('email', $credentials['email'])->first();
 
-        if (!$user || !Hash::check($credentials['password'], $user->password)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
-        }
-
-        return response()->json(['message' => 'Login successful']);
+    if (!$user || !Hash::check($credentials['password'], $user->password)) {
+        return response()->json(['error' => 'Unauthorized'], 401);
     }
+
+    // Aquí puedes incluir el tipo de usuario en la respuesta
+    return response()->json(['message' => 'Login successful', 'tipus' => $user->tipus]);
+}
+
 
     public function checkAuth(Request $request)
     {
