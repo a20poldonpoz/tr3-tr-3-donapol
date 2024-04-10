@@ -26,6 +26,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // Ruta per verificar si un usuari a fet login
     Route::middleware('auth:api')->get('/check-auth', [AuthController::class, 'checkAuth']);
+    Route::get('get-id', [App\Http\Controllers\AuthController::class, 'getUserId']);
 
 // Ruta para cerrar sesión
     Route::middleware('auth:api')->post('/logout', [AuthController::class, 'logout']);
