@@ -66,12 +66,8 @@ export default {
     }
     let data = await response.json();
     
-    console.log('Data from backend:', data); // Verifica la respuesta de tu backend
-
     this.user_id = data.user.id;
     this.tipusUsuari = data.user.tipus;
-
-    console.log('tipusUsuari:', this.tipusUsuari); // Verifica que tipusUsuari se haya asignado correctamente
 
     if (this.user_id == null) {
       alert('ERROR FETCH USER');

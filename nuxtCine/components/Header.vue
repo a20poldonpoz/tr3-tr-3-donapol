@@ -6,7 +6,7 @@
     <nav class="nav">
       <ul>
         <li><nuxt-link to="/cartelera" class="button secondary">Cartelera</nuxt-link></li>
-        <li><nuxt-link to="/reservas" class="button secondary">Les Meves Sessions</nuxt-link></li>
+        <li><nuxt-link v-if="!loguejat" to="/reservas" class="button secondary">Les Meves Sessions</nuxt-link></li>
         <li><nuxt-link v-if="!loguejat" to="/login" class="button primary">Login/Registre</nuxt-link></li>
         <li><nuxt-link v-if="loguejat" to="/perfil" class="button primary">Perfil</nuxt-link></li>
         <li><nuxt-link v-if="loguejat && admin === 'admin'" to="/admin/crud" class="button primary">Admin</nuxt-link></li>
