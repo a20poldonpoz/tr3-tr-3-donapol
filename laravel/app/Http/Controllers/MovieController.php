@@ -16,7 +16,7 @@ class MovieController extends Controller
       'director' => 'required|string',
       'any' => 'required|integer',
       'descripcio' => 'required|string',
-      'hora' => 'required|date_format:H:i:s',
+      'hora' => 'required',
   ]);
 
       $movie = Movie::create($validatedData);

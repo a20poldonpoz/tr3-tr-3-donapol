@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <Header />
+  <div class="container">
     <h1>Crear Película</h1>
     <form @submit.prevent="crearPelicula">
       <div>
@@ -25,6 +26,7 @@
       <button type="submit">Crear Nova Pel·lícula</button>
     </form>
   </div>
+  <Footer />
 </template>
 
 <script>
@@ -42,30 +44,27 @@ export default {
   },
   methods: {
     async crearPelicula() {
-      try {
-        const response = await fetch('http://localhost:8000/api/movies', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(this.formulari)
-        });
-        if (response.ok) {
-          const data = await response.json();
-          console.log('Película creada:', data);
-          this.$router.push('/crud');
-        } else {
-          console.error('Error al crear película:', response.statusText);
-        }
-      } catch (error) {
-        console.error('Error al crear película:', error);
+      const response = await fetch('http://localhost:8000/api/movies', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(this.formulari)
+      });
+      if (response.ok) {
+        const data = await response.json();
+        console.log('Película creada:', data);
+        this.$router.push('crud');
+      } else {
+        console.error('Error al crear película:', response.statusText);
       }
     }
-  }, 
+
+  },
   beforeMount() {
     const store = useStore();
     this.tipusUsuari = store.returnTipus();
-    if(this.tipusUsuari !== 'admin') {
+    if (this.tipusUsuari !== 'admin') {
       this.$router.push('/'); // Si el usuario no es administrador, redirige a otra página
     }
   }
@@ -73,4 +72,61 @@ export default {
 </script>
 
 <style scoped>
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
+
+.container {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(221, 203, 38, 0.74);
+}
+
+form {
+  display: grid;
+  gap: 10px;
+}
+
+label {
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="time"],
+textarea {
+  width: 100%;
+  padding: 9px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+button[type="submit"] {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 22px;
+  text-align: center;
+}
+
+button[type="submit"] {
+  margin-top: 10px;
+}
 </style>

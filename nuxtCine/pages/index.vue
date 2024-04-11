@@ -1,34 +1,34 @@
 <template>
   <body>
 
-  <div>
-    <Header />
-    <h1 class="title">TOP PEL·LÍCULES</h1>
-    <div class="container">
-      <div v-for="movie in movies" :key="movie.id" class="card">
-        <div class="image">
-          <img :src="movie.img" alt="Portada de la película" />
-        </div>
-        <div class="content">
-          <h3>{{ movie.title }}</h3>
-          <p><b>Director:</b> {{ movie.director }}</p>
-          <p><b>Any:</b> {{ movie.any }}</p>
-          <NuxtLink :to="'/reserva/' + movie.id">
-            <button class="reservar-button">Reservar seients</button>
-          </NuxtLink>
+    <div>
+      <Header />
+      <h1 class="title">TOP PEL·LÍCULES</h1>
+      <div class="container">
+        <div v-for="movie in movies" :key="movie.id" class="card">
+          <div class="image">
+            <img :src="movie.img" alt="Portada de la película" />
+          </div>
+          <div class="content">
+            <h3>{{ movie.title }}</h3>
+            <p><b>Director:</b> {{ movie.director }}</p>
+            <p><b>Any:</b> {{ movie.any }}</p>
+            <NuxtLink :to="'/reserva/' + movie.id">
+              <button class="reservar-button">Reservar seients</button>
+            </NuxtLink>
+          </div>
         </div>
       </div>
+      <Footer />
     </div>
-    <Footer />
-  </div>
-</body>
+  </body>
 </template>
 
 <script>
 export default {
   data() {
     return {
-      movies: [], 
+      movies: [],
     };
   },
   methods: {
@@ -52,7 +52,7 @@ export default {
     },
     // Función para aleatorizar el orden de un array
     shuffleArray(array) {
-      let currentIndex = array.length,  randomIndex;
+      let currentIndex = array.length, randomIndex;
 
       // Mientras haya elementos restantes a mezclar
       while (currentIndex != 0) {
@@ -81,11 +81,12 @@ export default {
 </script>
 
 <style scoped>
-body{
+body {
   margin: 0;
   padding: 0;
   height: 100%;
 }
+
 .title {
   text-align: center;
 }
@@ -96,8 +97,8 @@ body{
 }
 
 .card {
-  width: 300px; 
-  height: 400px; 
+  width: 300px;
+  height: 400px;
   background-color: #fff;
   margin: 20px;
   margin-bottom: 40px;
@@ -108,18 +109,18 @@ body{
 }
 
 .card:hover {
-  height: 400px; 
+  height: 400px;
 }
 
 .card .image img {
   width: 100%;
   height: auto;
   border-radius: 15px;
-  transition: transform 0.3s ease-in-out; 
+  transition: transform 0.3s ease-in-out;
 }
 
 .card:hover .image img {
-  transform: scale(1.4); 
+  transform: scale(1.4);
 }
 
 .card .content {
@@ -130,12 +131,12 @@ body{
   background-color: rgba(255, 255, 255, 0.8);
   padding: 20px;
   box-sizing: border-box;
-  transform: translateY(100%); 
-  transition: transform 0.3s ease-in-out; 
+  transform: translateY(100%);
+  transition: transform 0.3s ease-in-out;
 }
 
 .card:hover .content {
-  transform: translateY(0); 
+  transform: translateY(0);
 }
 
 h3 {

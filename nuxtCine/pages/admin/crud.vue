@@ -97,7 +97,7 @@ export default {
           console.error(error);
         });
     },
-    crearPelicula(){
+    crearPelicula() {
       navigateTo('/admin/create');
     },
     eliminarEstreno(id) {
@@ -106,7 +106,7 @@ export default {
           method: "DELETE",
         })
           .then((response) => {
-              this.estrenos = this.estrenos.filter(estreno => estreno.id !== id);
+            this.estrenos = this.estrenos.filter(estreno => estreno.id !== id);
           })
           .catch((error) => {
             console.error("Error de red:", error);
@@ -127,14 +127,14 @@ export default {
         },
         body: JSON.stringify(this.formularioEdicion)
       })
-      .then(response => response.json())
-      .then(data => {
-        //Actualitzar les dades de la sessio
-        const index = this.estrenos.findIndex(item => item.id === data.id);
-        this.estrenos.splice(index, 1, data);
-        //Cancelar dades
-        this.cancelarEdicion(estreno);
-      });
+        .then(response => response.json())
+        .then(data => {
+          //Actualitzar les dades de la sessio
+          const index = this.estrenos.findIndex(item => item.id === data.id);
+          this.estrenos.splice(index, 1, data);
+          //Cancelar dades
+          this.cancelarEdicion(estreno);
+        });
     },
     cancelarEdicion(estreno) {
       //Deijar el formulari com estaba
@@ -155,7 +155,7 @@ export default {
   beforeMount() {
     const store = useStore();
     this.tipusUsuari = store.returnTipus();
-    if(this.tipusUsuari !== 'admin') {
+    if (this.tipusUsuari !== 'admin') {
       this.$router.push('/'); // Si el usuario no es administrador, redirige a otra página
     }
   }
@@ -163,7 +163,6 @@ export default {
 </script>
 
 <style lang="css" scoped>
-
 body {
   margin: 0;
   padding: 0;
@@ -182,23 +181,35 @@ body {
 }
 
 .movie-image {
-  width: 80px; 
+  width: 80px;
   height: auto;
 }
 
 .edit-button {
   background-color: blue;
   color: white;
-  border: none;
+  border-radius: 3px;
   padding: 5px 10px;
+  margin: 3px;
+  cursor: pointer;
+}
+
+.create-button {
+  background-color: green;
+  color: white;
+  border-radius: 3px;
+  padding: 5px 10px;
+  margin: 3px;
   cursor: pointer;
 }
 
 .delete-button {
   background-color: red;
   color: white;
-  border: none;
+  border-radius: 3px;
+  border-color: black;
   padding: 5px 10px;
+  margin: 3px;
   cursor: pointer;
 }
 </style>
