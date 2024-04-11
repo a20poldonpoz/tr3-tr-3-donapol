@@ -1,19 +1,9 @@
-# transversals
-Esquema mínim de carpetes pels projectes transversals
-
-És obligatori seguir aquesta estructura tot i que la podeu ampliar.
-
-## Atenció
-Un cop comenceu heu de canviar aquesta explicació amb la corresponent al vostre projecte (utilitzant markdown)
-
-## Docker & Docker compose
-El projecte s'ha de poder desplegar en mode desenvolupament simplement fent docker compose up
 
 # Aquest fitxer ha de contenir com a mínim:
- * Nom dels integrants
- * Nom del projecte
- * Petita descripció
- * Adreça del gestor de tasques (taiga, jira, trello...)
- * Adreça del prototip gràfic del projecte (Penpot, figma, moqups...)
- * URL de producció (quan la tingueu)
- * Estat: (explicació d'en quin punt està)
+ * Pol Doña Pozuelo
+ * TR3-Cineliaco
+ * El meu projecte esta basat en una pagina de cinema, principalment es fan ventes de entrades.
+ * Taiga: https://tree.taiga.io/project/poleet-tr3-cinema/timeline
+ * Github: https://github.com/inspedralbes/tr3-tr-3-donapol
+ * Producció: http://tr3pol.daw.inspedralbes.cat/
+ * Estat: Acabat
