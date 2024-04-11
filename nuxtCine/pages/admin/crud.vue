@@ -2,7 +2,14 @@
   <body>
     <div>
       <Header />
-      <h1>CRUD PEL·LICULES</h1>
+
+      <div class="title-container">
+        <h1>CRUD PEL·LICULES</h1>
+        <router-link to="/admin/createSeients">
+          <button class="seient-button">Crear Seients</button>
+        </router-link>
+      </div>
+
       <table class="movie-table">
         <thead>
           <tr>
@@ -52,8 +59,8 @@
               <button class="delete-button" @click="eliminarEstreno(estreno.id)">Eliminar</button>
               <button class="edit-button" @click="editarEstreno(estreno)">Editar</button>
               <button class="create-button" @click="crearPelicula()">Crear Película</button>
-              <button v-if="estreno.editando" @click="guardarEdicion(estreno)">Guardar</button>
-              <button v-if="estreno.editando" @click="cancelarEdicion(estreno)">Cancelar</button>
+              <button v-if="estreno.editando" @click="guardarEdicion(estreno)" class="guardar-button">Guardar</button>
+              <button v-if="estreno.editando" @click="cancelarEdicion(estreno)" class="cancelar-button">Cancelar</button>
             </td>
           </tr>
         </tbody>
@@ -169,6 +176,17 @@ body {
   height: 100vh;
 }
 
+.title-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.title {
+  margin: 0;
+}
+
 .movie-table {
   width: 100%;
   border-collapse: collapse;
@@ -195,7 +213,7 @@ body {
 }
 
 .create-button {
-  background-color: green;
+  background-color: rgb(174, 0, 255);
   color: white;
   border-radius: 3px;
   padding: 5px 10px;
@@ -208,6 +226,33 @@ body {
   color: white;
   border-radius: 3px;
   border-color: black;
+  padding: 5px 10px;
+  margin: 3px;
+  cursor: pointer;
+}
+
+.seient-button {
+  background-color: orange;
+  color: white;
+  border-radius: 5px;
+  border-color: black;
+  padding: 20px 20px;
+  margin: 10px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.guardar-button {
+  background-color: rgb(21, 255, 0);
+  color: black;
+  padding: 5px 10px;
+  margin: 3px;
+  cursor: pointer;
+}
+
+.cancelar-button {
+  background-color: red;
+  color: black;
   padding: 5px 10px;
   margin: 3px;
   cursor: pointer;

@@ -18,8 +18,6 @@ class SeatController extends Controller
     {
         $seats = $request->json()->all();
 
-       
-
         foreach ($seats as $seat) {
             Seat::create([
                 'movie_id' => $seat['movie_id'],
@@ -49,6 +47,33 @@ class SeatController extends Controller
         $seat->save();
 
         return response()->json(['message' => 'Estado del asiento actualizado correctamente'], 200);
+    }
+
+    public function generateSeats(Request $request)
+    {
+        $data = $request->all();
+
+        $movie_id = $data['movie_id'];
+        $fila_vip = $data['fila_vip'];
+
+        $seats = [];
+
+        for ($fila = 1; $fila <= 12; $fila++) {
+            for ($columna = 1; $columna <= 10; $columna++) {
+                $vip = ($fila == $fila_vip) ? 'true' : 'false';
+                $seats[] = [
+                    'movie_id' => $movie_id,
+                    'status' => 'true',
+                    'columna' => $columna,
+                    'fila' => $fila,
+                    'vip' => $vip
+                ];
+            }
+        }
+
+        Seat::insert($seats);
+
+        return response()->json(['message' => 'Seients creats correctament'], 201);
     }
 
 }

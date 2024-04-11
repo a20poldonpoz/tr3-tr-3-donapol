@@ -49,6 +49,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     Route::get('seient/{id}', [SeatController::class, 'show']); //Mostrar un asiento
     Route::post('/insert-seients',[SeatController::class, 'insert']); //Insertar nuevo asiento
     Route::patch('/seats/{id}/status', [SeatController::class, 'updateStatus']);
+    Route::post('seats/generate', [SeatController::class, 'generateSeats']);
+
 
 
 //Rutas per els tickets de compra
