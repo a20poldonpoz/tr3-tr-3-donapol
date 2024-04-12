@@ -54,7 +54,7 @@ export default {
 
         this.loading = true; // Mostrar animación de carga
 
-        const response = await fetch(`http://localhost:8000/api/tickets?email=${email}`);
+        const response = await fetch(`http://tr3pol.daw.inspedralbes.cat/laravel/public/api/tickets?email=${email}`);
         if (!response.ok) {
           throw new Error('Error al buscar las reservas');
         }
@@ -62,7 +62,7 @@ export default {
         const data = await response.json();
 
         this.reservas = await Promise.all(data.tickets.map(async ticket => {
-          const movieResponse = await fetch(`http://localhost:8000/api/movies/${ticket.movie_id}`);
+          const movieResponse = await fetch(`http://tr3pol.daw.inspedralbes.cat/laravel/public/api/movies/${ticket.movie_id}`);
           if (!movieResponse.ok) {
             throw new Error('Error al buscar la película');
           }
@@ -104,9 +104,9 @@ body {
   padding: 20px;
   max-width: 600px;
   width: 100%;
-  background-color: #ffffff; 
-  border-radius: 10px; 
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .grid-container {
@@ -132,7 +132,7 @@ body {
 }
 
 .ticket-header {
-  background-color: #393a39; 
+  background-color: #393a39;
   color: yellow;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;

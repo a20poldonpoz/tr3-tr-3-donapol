@@ -44,7 +44,7 @@ export default {
   },
   methods: {
     async crearPelicula() {
-      const response = await fetch('http://localhost:8000/api/movies', {
+      const response = await fetch('http://tr3pol.daw.inspedralbes.cat/laravel/public/api/movies', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

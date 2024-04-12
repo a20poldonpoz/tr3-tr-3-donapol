@@ -4,7 +4,8 @@
     <div class="container">
       <div class="content">
         <h1 class="titulo">Les meves sessions</h1>
-        <input type="email" placeholder="Introdueix el correu" v-model="email" class="input-email" :class="{ 'loading-animation': loading }">
+        <input type="email" placeholder="Introdueix el correu" v-model="email" class="input-email"
+          :class="{ 'loading-animation': loading }">
         <button @click="buscarReservas" class="buscar-button">Buscar Reservas</button>
         <div v-if="reservas.length > 0" class="grid-container">
           <div v-for="(reserva, index) in reservas" :key="index" class="reserva-ticket">
@@ -42,7 +43,7 @@ export default {
   methods: {
     buscarReservas() {
       this.loading = true; // Mostrar animación de carga
-      fetch(`http://localhost:8000/api/tickets?email=${this.email}`)
+      fetch(`http://tr3pol.daw.inspedralbes.cat/laravel/public/api/tickets?email=${this.email}`)
         .then(response => {
           if (!response.ok) {
             throw new Error('Error al buscar las reservas');
@@ -58,7 +59,7 @@ export default {
           });
 
           const fetchMovies = this.reservas.map(ticket => {
-            return fetch(`http://localhost:8000/api/movies/${ticket.movie_id}`)
+            return fetch(`http://tr3pol.daw.inspedralbes.cat/laravel/public/api/movies/${ticket.movie_id}`)
               .then(response => {
                 if (!response.ok) {
                   throw new Error('Error al buscar la película');
@@ -112,9 +113,9 @@ body {
   padding: 20px;
   max-width: 600px;
   width: 100%;
-  background-color: #ffffff; 
-  border-radius: 10px; 
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .grid-container {
@@ -124,29 +125,29 @@ body {
 }
 
 .input-email {
-  width: calc(100% - 20px); 
+  width: calc(100% - 20px);
   padding: 10px;
   font-size: 16px;
   margin-bottom: 20px;
-  border: 1px solid #ccc; 
-  border-radius: 5px; 
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 .buscar-button {
-  width: calc(100% - 20px); 
+  width: calc(100% - 20px);
   padding: 20px;
   background-color: #393a39;
   color: yellow;
   border: none;
-  border-radius: 5px; 
+  border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s; 
+  transition: background-color 0.3s;
   margin-bottom: 15px;
 }
 
 .buscar-button:hover {
-  background-color: #393a39; 
+  background-color: #393a39;
 }
 
 .titulo {
@@ -166,7 +167,7 @@ body {
 }
 
 .ticket-header {
-  background-color: #393a39; 
+  background-color: #393a39;
   color: yellow;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;

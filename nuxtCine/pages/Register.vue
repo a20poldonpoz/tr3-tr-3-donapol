@@ -1,27 +1,27 @@
 <template>
   <body>
 
-  <div class="formContainer">
-    <Header />
+    <div class="formContainer">
+      <Header />
 
-    <div class="container">
-      <form @submit.prevent="fetchLogin">
+      <div class="container">
+        <form @submit.prevent="fetchLogin">
 
-        <label for="name">Nom</label>
-        <input type="text" id="name" v-model="name">
+          <label for="name">Nom</label>
+          <input type="text" id="name" v-model="name">
 
-        <label for="email">Email</label>
-        <input type="text" id="email" v-model="email">
+          <label for="email">Email</label>
+          <input type="text" id="email" v-model="email">
 
-        <label for="password">Contraseña</label>
-        <input type="password" id="password" v-model="password">
+          <label for="password">Contraseña</label>
+          <input type="password" id="password" v-model="password">
 
-        <button type="submit">Registra't</button>
-      </form>
+          <button type="submit">Registra't</button>
+        </form>
+      </div>
     </div>
-  </div>
-  <Footer />
-</body>
+    <Footer />
+  </body>
 </template>
 
 <script>
@@ -36,7 +36,7 @@ export default {
   methods: {
     async fetchLogin() {
       try {
-        const response = await fetch('http://localhost:8000/api/register', {
+        const response = await fetch('http://tr3pol.daw.inspedralbes.cat/laravel/public/api/register', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -61,15 +61,16 @@ export default {
 </script>
 
 <style scoped>
-body{
+body {
   margin: 0;
   padding: 0;
   height: 100%;
 }
 
-.formContainer{
+.formContainer {
   height: 75vh;
 }
+
 .container {
   max-width: 400px;
   margin: 50px auto;

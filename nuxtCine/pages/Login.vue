@@ -42,7 +42,7 @@ export default {
     async fetchLogin() {
       try {
         this.loading = true;
-        const response = await fetch('http://localhost:8000/api/login', {
+        const response = await fetch('http://tr3pol.daw.inspedralbes.cat/laravel/public/api/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -66,7 +66,7 @@ export default {
     },
     async fetchId() {
       try {
-        let response = await fetch(`http://localhost:8000/api/get-id?email=${encodeURIComponent(this.email)}`);
+        let response = await fetch(`http://tr3pol.daw.inspedralbes.cat/laravel/public/api/get-id?email=${encodeURIComponent(this.email)}`);
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }

@@ -38,7 +38,7 @@ export default {
   methods: {
     async cargarPeliculas() {
       try {
-        const response = await fetch('http://localhost:8000/api/movies');
+        const response = await fetch('http://tr3pol.daw.inspedralbes.cat/laravel/public/api/movies');
         if (response.ok) {
           this.peliculas = await response.json();
         } else {
@@ -50,7 +50,7 @@ export default {
     },
     async crearAsientos() {
 
-      const response = await fetch('http://localhost:8000/api/seats/generate', {
+      const response = await fetch('http://tr3pol.daw.inspedralbes.cat/laravel/public/api/seats/generate', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

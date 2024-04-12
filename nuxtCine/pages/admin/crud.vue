@@ -88,7 +88,7 @@ export default {
   },
   methods: {
     fetchData() {
-      fetch("http://localhost:8000/api/movies")
+      fetch("http://tr3pol.daw.inspedralbes.cat/laravel/public/api/movies")
         .then((response) => response.json())
         .then((data) => {
           if (data) {
@@ -109,7 +109,7 @@ export default {
     },
     eliminarEstreno(id) {
       if (confirm("¿Estás segur de que vols eliminar la película?")) {
-        fetch(`http://localhost:8000/api/movies/${id}`, {
+        fetch(`http://tr3pol.daw.inspedralbes.cat/laravel/public/api/movies/${id}`, {
           method: "DELETE",
         })
           .then((response) => {
@@ -127,7 +127,7 @@ export default {
       };
     },
     guardarEdicion(estreno) {
-      fetch(`http://localhost:8000/api/movies/${estreno.id}`, {
+      fetch(`http://tr3pol.daw.inspedralbes.cat/laravel/public/api/movies/${estreno.id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json"

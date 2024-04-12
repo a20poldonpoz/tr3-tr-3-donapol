@@ -1,37 +1,34 @@
 <template>
   <body>
-    
- 
-  <div>
-    <Header />
-    <div class="ticket">
-      <h1>Ticket Compraa</h1>
-      <p class="movie-title">Película: {{ nomPeli }}</p>
-      <div v-if="infoSeients.length > 0 && !loading" class="seat-details">
-        <div v-for="(infoSeient, index) in infoSeients" :key="index">
-          <p>Fila: {{ infoSeient.fila }}, Columna: {{ infoSeient.columna }}</p>
+
+
+    <div>
+      <Header />
+      <div class="ticket">
+        <h1>Ticket Compraa</h1>
+        <p class="movie-title">Película: {{ nomPeli }}</p>
+        <div v-if="infoSeients.length > 0 && !loading" class="seat-details">
+          <div v-for="(infoSeient, index) in infoSeients" :key="index">
+            <p>Fila: {{ infoSeient.fila }}, Columna: {{ infoSeient.columna }}</p>
+          </div>
+        </div>
+        <p v-if="preuTotal && !loading" class="total-price">Preu Total: {{ preuTotal }}€</p>
+        <!-- Campo de entrada para el correo electrónico -->
+        <div v-if="mostrarEmail && !loading" class="email-field">
+          <input type="email" placeholder="Introduzca su correo electrónico" v-model="email" />
+          <button @click="confirmarCompra">Confirmar Compra</button>
+        </div>
+        <!-- Mensaje de carga -->
+        <div v-if="loading" class="loading-overlay">
+          <p>Esperi un segon, siusplau...</p>
+          <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" alt="Cargando..." />
         </div>
       </div>
-      <p v-if="preuTotal && !loading" class="total-price">Preu Total: {{ preuTotal }}€</p>
-      <!-- Campo de entrada para el correo electrónico -->
-      <div v-if="mostrarEmail && !loading" class="email-field">
-        <input type="email" placeholder="Introduzca su correo electrónico" v-model="email" />
-        <button @click="confirmarCompra">Confirmar Compra</button>
-      </div>
-      <!-- Mensaje de carga -->
-      <div v-if="loading" class="loading-overlay">
-        <p>Esperi un segon, siusplau...</p>
-        <img
-          src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif"
-          alt="Cargando..."
-        />
-      </div>
+      <!-- Botón para abrir el campo de entrada -->
+      <button v-if="!mostrarEmail" class="reserve-button" @click="mostrarEmail = true">Reservar Película</button>
     </div>
-    <!-- Botón para abrir el campo de entrada -->
-    <button v-if="!mostrarEmail" class="reserve-button" @click="mostrarEmail = true">Reservar Película</button>
-  </div>
-  <Footer />
-</body>
+    <Footer />
+  </body>
 </template>
 
 <script>
@@ -43,7 +40,7 @@ export default {
       nomPeli: '',
       mostrarEmail: false,
       email: '',
-      movieSessionId: null, 
+      movieSessionId: null,
       seatId: null,   // ID del asiento
       loading: false
     };
@@ -74,8 +71,8 @@ export default {
         const data = {
           movie_id: this.movieSessionId,
           seat_id: infoSeient.id,
-          fila: infoSeient.fila, 
-          columna: infoSeient.columna, 
+          fila: infoSeient.fila,
+          columna: infoSeient.columna,
           preu: this.preuTotal,
           email: this.email,
         };
@@ -93,33 +90,33 @@ export default {
           return Promise.all(updatePromises);
         })
         .then(() => {
-          
+
           console.log('Compra confirmadas exitosamente');
         })
         .finally(() => {
           this.loading = false;
         });
     },
-    
+
     // Función para reservar asiento
     reservarAsiento(data) {
-  return fetch('http://localhost:8000/api/tickets', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
+      return fetch('http://tr3pol.daw.inspedralbes.cat/laravel/public/api/tickets', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      }).then(response => {
+        if (!response.ok) {
+          throw new Error('Error al confirmar la compra');
+        }
+        return data.seat_id;
+      });
     },
-    body: JSON.stringify(data)
-  }).then(response => {
-    if (!response.ok) {
-      throw new Error('Error al confirmar la compra');
-    }
-    return data.seat_id;
-  });
-},
 
     // Función para cambiar estado de asiento
     cambiarEstadoAsiento(seatId) {
-      return fetch(`http://localhost:8000/api/seats/${seatId}/status`, {
+      return fetch(`http://tr3pol.daw.inspedralbes.cat/laravel/public/api/seats/${seatId}/status`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json'
@@ -136,7 +133,7 @@ export default {
 </script>
 
 <style scoped>
-body{
+body {
   margin: 0;
   padding: 0;
   height: 100%;
@@ -150,7 +147,7 @@ body{
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
   max-width: 400px;
-  margin: 30px auto; 
+  margin: 30px auto;
 }
 
 h1 {

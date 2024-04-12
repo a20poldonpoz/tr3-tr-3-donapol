@@ -34,7 +34,7 @@ export default {
   methods: {
     fetchMovies() {
       // Realizar una solicitud para obtener todas las películas disponibles
-      fetch("http://localhost:8000/api/movies")
+      fetch("http://tr3pol.daw.inspedralbes.cat/laravel/public/api/movies")
         .then(response => response.json())
         .then(data => {
           if (data) {

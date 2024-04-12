@@ -1,89 +1,56 @@
 <template>
   <body>
-    
 
-  <Header />
-  <!-- Mostrar GIF de carga mientras carga la página -->
-  <div v-if="!fetch_fet" class="loading-container">
-    <div class="loading">
-      <img
-        src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif"
-        alt="Cargando..."
-      />
-    </div>
-  </div>
 
-  <div v-else class="container">
-    <div class="div-movie-cont">
-      <h1 class="title">{{ movie_session.titol }}</h1>
-      <img :src="movie_session.poster" alt="" class="poster" />
+    <Header />
+    <!-- Mostrar GIF de carga mientras carga la página -->
+    <div v-if="!fetch_fet" class="loading-container">
+      <div class="loading">
+        <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" alt="Cargando..." />
+      </div>
     </div>
 
-    <div class="screen">PANTALLA</div>
+    <div v-else class="container">
+      <div class="div-movie-cont">
+        <h1 class="title">{{ movie_session.titol }}</h1>
+        <img :src="movie_session.poster" alt="" class="poster" />
+      </div>
 
-    <!-- Mostrar seients fila a fila -->
-    <div v-for="row in 12" :key="row" class="div-seats-row">
-      <div
-        v-for="seat in seients.filter((seat) => seat.fila === row)"
-        :key="seat.id"
-        class="div-seat-cont"
-        :class="{
+      <div class="screen">PANTALLA</div>
+
+      <!-- Mostrar seients fila a fila -->
+      <div v-for="row in 12" :key="row" class="div-seats-row">
+        <div v-for="seat in seients.filter((seat) => seat.fila === row)" :key="seat.id" class="div-seat-cont" :class="{
           'div-seat-cont--clicked': isSelected(seat.id),
           'div-seat-cont--occupied': seat.status === 'false',
-        }"
-        @click="seat.status === 'true' && seat_selected(seat)"
-      >
-        <img
-          v-if="seat.vip === 'true' && seat.status === 'true'"
-          src="https://cdn-icons-png.flaticon.com/512/470/470101.png"
-          alt="seientlliure"
-          srcset=""
-          class="seat-icon"
-        />
+        }" @click="seat.status === 'true' && seat_selected(seat)">
+          <img v-if="seat.vip === 'true' && seat.status === 'true'"
+            src="https://cdn-icons-png.flaticon.com/512/470/470101.png" alt="seientlliure" srcset="" class="seat-icon" />
 
-        <img
-          src="https://cdn-icons-png.flaticon.com/512/4221/4221960.png"
-          alt="seientlliure"
-          srcset=""
-          class="seat-icon"
-          v-else-if="seat.vip === 'false' && seat.status === 'true'"
-        />
+          <img src="https://cdn-icons-png.flaticon.com/512/4221/4221960.png" alt="seientlliure" srcset=""
+            class="seat-icon" v-else-if="seat.vip === 'false' && seat.status === 'true'" />
 
-        <img
-          src="https://cdn-icons-png.flaticon.com/512/4221/4221971.png"
-          alt="seientOcupat"
-          srcset=""
-          class="seat-icon"
-          v-else-if="seat.status === 'false' && seat.vip === 'false'"
-        />
+          <img src="https://cdn-icons-png.flaticon.com/512/4221/4221971.png" alt="seientOcupat" srcset=""
+            class="seat-icon" v-else-if="seat.status === 'false' && seat.vip === 'false'" />
 
-        <img
-          src="https://cdn-icons-png.flaticon.com/512/470/470101.png"
-          alt="seientOcupat"
-          srcset=""
-          class="seat-icon"
-          v-else-if="seat.status === 'false' && seat.vip === 'true'"
-        />
+          <img src="https://cdn-icons-png.flaticon.com/512/470/470101.png" alt="seientOcupat" srcset="" class="seat-icon"
+            v-else-if="seat.status === 'false' && seat.vip === 'true'" />
+        </div>
+      </div>
+
+      <!-- Informacio sobre butaca seleccionada -->
+      <div v-if="selected_seients.length > 0" class="selected-seat">
+        <p>Preu Total: {{ calcularPrecioTotal() }}€</p>
+        <p>Butaques seleccionades:</p>
+        <div v-for="seat in selected_seients" :key="seat.id" class="selected-seat-item">
+          <span>{{ seat.fila }} - {{ seat.columna }}</span>
+        </div>
+        <button @click="confirmarCompra" class="confirm-button">
+          Confirmar compra
+        </button>
       </div>
     </div>
-
-    <!-- Informacio sobre butaca seleccionada -->
-    <div v-if="selected_seients.length > 0" class="selected-seat">
-      <p>Preu Total: {{ calcularPrecioTotal() }}€</p>
-      <p>Butaques seleccionades:</p>
-      <div
-        v-for="seat in selected_seients"
-        :key="seat.id"
-        class="selected-seat-item"
-      >
-        <span>{{ seat.fila }} - {{ seat.columna }}</span>
-      </div>
-      <button @click="confirmarCompra" class="confirm-button">
-        Confirmar compra
-      </button>
-    </div>
-  </div>
-</body>
+  </body>
 </template>
 
 <script>
@@ -104,7 +71,7 @@ export default {
 
     // Obté les dades de la sessió de la pel·lícula des del servidor
     fetchData() {
-      fetch(`http://localhost:8000/api/movies/${this.movie_session_id}`)
+      fetch(`http://tr3pol.daw.inspedralbes.cat/laravel/public/api/movies/${this.movie_session_id}`)
         .then((response) => response.json())
         .then((data) => {
           if (data) {
@@ -120,7 +87,7 @@ export default {
     },
     // Obté les dades dels seients disponibles per a la sessió de la pel·lícula
     fetchDataSeats() {
-      fetch(`http://localhost:8000/api/seient/${this.movie_session_id}`)
+      fetch(`http://tr3pol.daw.inspedralbes.cat/laravel/public/api/seient/${this.movie_session_id}`)
         .then((response) => response.json())
         .then((data) => {
           if (data) {
@@ -160,38 +127,38 @@ export default {
     },
     // Confirma la compra dels seients seleccionats i redirigeix a la pàgina de confirmació
     confirmarCompra() {
-  if (this.selected_seients.length > 0) {
-    const preuVIP = 8;
-    let preuUnitari = 6;
-    let precioTotal = 0;
+      if (this.selected_seients.length > 0) {
+        const preuVIP = 8;
+        let preuUnitari = 6;
+        let precioTotal = 0;
 
-    this.selected_seients.forEach(seat => {
-      if (seat.vip === 'true') {
-        precioTotal += preuVIP;
-      } else {
-        precioTotal += preuUnitari;
+        this.selected_seients.forEach(seat => {
+          if (seat.vip === 'true') {
+            precioTotal += preuVIP;
+          } else {
+            precioTotal += preuUnitari;
+          }
+        });
+
+        // Mapear los asientos seleccionados para enviar el ID, fila y columna
+        const asientosSeleccionados = this.selected_seients.map(seat => ({
+          id: seat.id,
+          fila: seat.fila,
+          columna: seat.columna
+        }));
+
+        this.$router.push({
+          path: "/confirmarCompra",
+          query: {
+            infoSeients: JSON.stringify(asientosSeleccionados), // Convertir el array de asientos seleccionados a JSON
+            movieSessionId: this.movie_session_id,
+            nomPeli: this.movie_session.titol,
+            preuTotal: precioTotal,
+          },
+        });
       }
-    });
-    
-    // Mapear los asientos seleccionados para enviar el ID, fila y columna
-    const asientosSeleccionados = this.selected_seients.map(seat => ({
-      id: seat.id,
-      fila: seat.fila,
-      columna: seat.columna
-    }));
-
-    this.$router.push({
-      path: "/confirmarCompra",
-      query: {
-        infoSeients: JSON.stringify(asientosSeleccionados), // Convertir el array de asientos seleccionados a JSON
-        movieSessionId: this.movie_session_id,
-        nomPeli: this.movie_session.titol,
-        preuTotal: precioTotal,
-      },
-    });
-  }
-},
-calcularPrecioTotal() {
+    },
+    calcularPrecioTotal() {
       let preuUnitari = 6;
       const precioVIP = 8; // Precio para filas VIP
       let precioTotal = 0;
@@ -217,11 +184,12 @@ calcularPrecioTotal() {
 </script>
 
 <style scoped>
-body{
+body {
   margin: 0;
   padding: 0;
   height: 100%;
 }
+
 .container {
   display: flex;
   flex-direction: column;
